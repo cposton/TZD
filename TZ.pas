@@ -37,7 +37,7 @@ var
     ConvertedTime: TSystemTime;
 begin
     DateTimeToSystemTime(ALocalTime, LocalTime);
-    SystemTimeToTzSpecificLocalTimeEx(@ATimeZone, LocalTime, ConvertedTime);
+    TzSpecificLocalTimeToSystemTimeEx(@ATimeZone, LocalTime, ConvertedTime);
     Result := SystemTimeToDateTime(ConvertedTime);
 end;
 
