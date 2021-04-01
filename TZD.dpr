@@ -37,7 +37,7 @@ begin
                 TestDateTime := EncodeDateTime(2021, 1, 1, 0, 0, 0, 0);
 
                 repeat
-                    ConvertedTime := ConvertTime(TestDateTime, TZ);
+                    ConvertedTime := ConvertUTCToLocal(TestDateTime, TZ);
 
                     Writeln(OutputFile, FormatDateTime(DATE_TIME_FORMAT, TestDateTime), ',', FormatDateTime(DATE_TIME_FORMAT, ConvertedTime));
 
