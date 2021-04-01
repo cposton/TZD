@@ -19,8 +19,7 @@ var
     TimeZones: TList<TDynamicTimeZoneInformation>;
     TZ: TDynamicTimeZoneInformation;
     TestDateTime: TDateTime;
-    UTCTime: TSystemTime;
-    ConvertedTime: TSystemTime;
+    ConvertedTime: TDateTime;
 begin
     TimeZones := GetTimeZones;
 
@@ -38,15 +37,12 @@ begin
                 TestDateTime := EncodeDateTime(2021, 1, 1, 0, 0, 0, 0);
 
                 repeat
-                    DateTimeToSystemTime(TestDateTime, UTCTime);
+                    ConvertedTime := ConvertTime(TestDateTime, TZ);
 
-                    SystemTimeToTzSpecificLocalTimeEx(@TZ, UTCTime, ConvertedTime);
-
-                    //TFormatSettings.Invariant
-                    Writeln(OutputFile, FormatDateTime(DATE_TIME_FORMAT, SystemTimeToDateTime(UTCTime)), ',', FormatDateTime(DATE_TIME_FORMAT, SystemTimeToDateTime(ConvertedTime)));
+                    Writeln(OutputFile, FormatDateTime(DATE_TIME_FORMAT, TestDateTime), ',', FormatDateTime(DATE_TIME_FORMAT, ConvertedTime));
 
                     TestDateTime := IncMinute(TestDateTime, 10);
-                until (YearOf(TestDateTime) = 2032)
+                until (YearOf(TestDateTime) = 2051)
             finally
                 CloseFile(OutputFile);
             end;
