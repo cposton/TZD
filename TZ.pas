@@ -7,9 +7,6 @@ uses
     System.Generics.Collections,
     System.SysUtils;
 
-//{$EXTERNALSYM EnumDynamicTimeZoneInformation}
-
-
 function SystemTimeToTzSpecificLocalTimeEx(lpTimeZoneInformation: PTimeZoneInformation; var lpUniversalTime, lpLocalTime: TSystemTime): BOOL; stdcall;
 function EnumDynamicTimeZoneInformation(dwIndex: DWORD; lpTimeZoneInformation: PDynamicTimeZoneInformation): DWORD; stdcall;
 
